@@ -1,7 +1,7 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-
+const dayLength = 9;
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -21,4 +21,32 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   $("#currentDay").text(dayjs().format("dddd, MMMM Do"));
+
+  renderCalendar();
 });
+
+function renderCalendar() {
+  for (let i = 0; i < dayLength; i++) {
+    var hour = i + dayLength;
+    var hourStatus = "";
+    var hourToBeAdded = $("<div>")
+      .attr("id", "hour-" + i)
+      .addClass("row time-block past");
+
+    hourToBeAdded.append(
+      $("<div>" + dayjs().hour(hour).format("hA") + "</div>").addClass(
+        "col-2 col-md-1 hour text-center py-3"
+      )
+    );
+    hourToBeAdded.append(
+      $("<textarea>").attr("rows", "3").addClass("col-8 col-md-10 description")
+    );
+    hourToBeAdded.append(
+      $("<button>")
+        .attr("aria-label", "save")
+        .addClass("btn saveBtn col-2 col-md-1")
+        .append($("<i>").attr("aria-hidden", "true").addClass("fas fa-save"))
+    );
+    $("#schedule").append(hourToBeAdded);
+  }
+}
