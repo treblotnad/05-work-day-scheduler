@@ -1,5 +1,7 @@
 const dayLength = 9;
 $(function () {
+  $("#currentDay").text(dayjs().format("dddd, MMMM Do"));
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -7,17 +9,21 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  $("#currentDay").text(dayjs().format("dddd, MMMM Do"));
 
   renderCalendar();
+  $("button").click(function () {
+    var index = $(this).parent().attr("id").slice(-1);
+    var agenda = $("#hour-" + index)
+      .children("textarea")
+      .val();
+    console.log(agenda);
+    localStorage.setItem(index, agenda);
+  });
 });
-
+//function that creates hour blocks and formats content to display correctly
 function renderCalendar() {
   for (let i = 0; i < dayLength; i++) {
+    var storedText = localStorage.getItem(i) || "";
     var hour = i + dayLength;
     var hourStatus = "past";
     if (dayjs().hour() > hour) {
@@ -36,7 +42,9 @@ function renderCalendar() {
       )
     );
     hourToBeAdded.append(
-      $("<textarea>").attr("rows", "3").addClass("col-8 col-md-10 description")
+      $("<textarea>" + storedText + "</textarea>")
+        .attr("rows", "3")
+        .addClass("col-8 col-md-10 description")
     );
     hourToBeAdded.append(
       $("<button>")
@@ -46,4 +54,14 @@ function renderCalendar() {
     );
     $("#schedule").append(hourToBeAdded);
   }
+}
+//function that saves content to local storage based on index of clicked button
+function saveAgenda() {
+  console.log("test");
+
+  var index = $(this).parent().attr("id").slice(-1);
+  var agenda = $("#hour-" + index)
+    .children("textarea")
+    .text();
+  localStorage.setItem(index, agenda);
 }
