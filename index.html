@@ -19,6 +19,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    
+  
     <title>Work Day Scheduler</title>
   </head>
 
@@ -66,13 +68,15 @@
         </button>
       </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-      crossorigin="anonymous"
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="=anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js" 
+    integrity="sha512-FwNWaxyfy2XlEINoSnZh1JQ5TRRtGow0D6XcmAWmYCRgvqOUTnzCxPc9uF35u5ZEpirk1uhlPVA19tflhvnW1g==" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/plugin/advancedFormat.min.js" 
+    integrity="sha512-oOF6H/+bcZjL9xEZ71lPxWSLn62axEgf6jDBuge0rTy7HjcMmWLQ7Y46WVC0m1hGibeYyTeHLi1ZUrZTvt2QxQ==" 
+    crossorigin="anonymous"
     ></script>
-
+    <script>dayjs.extend(window.dayjs_plugin_advancedFormat)</script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
