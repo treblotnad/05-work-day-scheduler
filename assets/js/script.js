@@ -1,24 +1,10 @@
+//changes how many hour blocks based on how long of a day is specified
 const dayLength = 9;
+//jquery wrapped to make sure all elements display before running stuff
 $(function () {
   $("#currentDay").text(dayjs().format("dddd, MMMM Do"));
-
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-
   renderCalendar();
-  $("button").click(function () {
-    var index = $(this).parent().attr("id").slice(-1);
-    var agenda = $("#hour-" + index)
-      .children("textarea")
-      .val();
-    console.log(agenda);
-    localStorage.setItem(index, agenda);
-  });
+  $("button").click(saveAgenda);
 });
 //function that creates hour blocks and formats content to display correctly
 function renderCalendar() {
@@ -57,11 +43,12 @@ function renderCalendar() {
 }
 //function that saves content to local storage based on index of clicked button
 function saveAgenda() {
-  console.log("test");
-
   var index = $(this).parent().attr("id").slice(-1);
   var agenda = $("#hour-" + index)
     .children("textarea")
-    .text();
+    .val();
+  if (agenda == "") {
+    return;
+  }
   localStorage.setItem(index, agenda);
 }
