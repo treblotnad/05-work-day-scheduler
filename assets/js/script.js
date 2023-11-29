@@ -4,7 +4,8 @@ const dayLength = 9;
 $(function () {
   $("#currentDay").text(dayjs().format("dddd, MMMM Do"));
   renderCalendar();
-  $("button").click(saveAgenda);
+  $("button.saveBtn").click(saveAgenda);
+  $("#clearBtn").click(clearAgenda);
 });
 //function that creates hour blocks and formats content to display correctly
 function renderCalendar() {
@@ -48,7 +49,12 @@ function saveAgenda() {
     .children("textarea")
     .val();
   if (agenda == "") {
-    return;
+    localStorage.removeItem(index);
   }
   localStorage.setItem(index, agenda);
+}
+
+function clearAgenda() {
+  localStorage.clear();
+  location.reload();
 }
