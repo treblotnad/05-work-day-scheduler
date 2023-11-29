@@ -11,7 +11,7 @@ Date is displayed in header above clear button which clears local storage.
 Hour blocks are color coded if they are before or after the current time dynamically.
 
 ![Screenshot of Scheduler App](assets/Scheduler_Screenshot.png)
-https://treblotnad.github.io/04-work-day-scheduler/
+https://treblotnad.github.io/05-work-day-scheduler/
 
 ## Credits
 
