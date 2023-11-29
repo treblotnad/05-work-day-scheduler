@@ -13,7 +13,7 @@ function renderCalendar() {
     var storedText = localStorage.getItem(i) || "";
     var hour = i + dayLength;
     var hourStatus = "past";
-    if (dayjs().hour() > hour) {
+    if (dayjs().hour() < hour) {
       hourStatus = "future";
     }
     if (dayjs().hour() == hour) {
